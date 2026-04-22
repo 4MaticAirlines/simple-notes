@@ -67,7 +67,7 @@ simple-notes/
 2. Дождаться `Gradle Sync`.
 3. Запустить проект на эмуляторе или устройстве Android (API 26+).
 
-> В репозитории добавлены `gradlew` и `gradle-wrapper.properties`. Если Android Studio запросит восстановление wrapper JAR, просто согласись на sync — это стандартно для нового проекта.
+> В репозитории добавлены `gradlew` и `gradle-wrapper.properties`
 
 ## Тесты
 
@@ -83,13 +83,4 @@ simple-notes/
 ./gradlew connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=com.example.simplenotes.NoteUITest
 ```
 
-## Профилирование
 
-Результаты профилирования вынесены в `docs/profiling-results.md`.
-
-## Что соответствует отчётам
-
-- 10 тестов для `NoteDao`
-- 8 UI-тестов Espresso
-- Room + MVVM + LiveData + Coroutines
-- `RecyclerView`, `FAB`, экран редактирования, empty state, swipe delete
