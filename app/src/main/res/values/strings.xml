@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SimpleNotes</string>
+    <string name="save">Сохранить</string>
+    <string name="add_note">Добавить заметку</string>
+    <string name="empty_state">Нет заметок</string>
+    <string name="title_hint">Заголовок</string>
+    <string name="content_hint">Текст заметки</string>
+    <string name="error_title_required">Заголовок обязателен</string>
+    <string name="new_note_title">Новая заметка</string>
+    <string name="edit_note_title">Редактирование заметки</string>
+    <string name="note_deleted">Заметка удалена</string>
+    <string name="undo">Отменить</string>
+    <string name="note_without_text">Без текста</string>
+</resources>
