@@ -1,37 +1,57 @@
 # SimpleNotes
 
-Мобильное Android-приложение для лабораторных работ №11–12 по дисциплине «Методы тестирования и отладки ПО».
+Мобильное Android-приложение для локального хранения заметок. 
 
-## Описание
+**Репозиторий:** `https://github.com/4MaticAirlines/simple-notes`
 
-SimpleNotes — приложение для локального хранения заметок. Пользователь может создавать, редактировать, удалять и просматривать заметки. Архитектура проекта построена по MVVM и использует Room Database, LiveData и Kotlin Coroutines.
+## Соответствие техническому заданию
 
-## Стек
+В приложении реализован минимальный функционал:
+- создание заметки: **заголовок + текст**;
+- редактирование заметки;
+- удаление заметки;
+- просмотр списка заметок;
+- локальное хранение данных.
 
-- Kotlin 1.9
-- Min SDK 26
-- Target SDK 34
-- Room Database (SQLite)
-- MVVM
-- LiveData
-- Kotlin Coroutines + Flow
-- XML Layouts
-- RecyclerView
-- Material Design 3
-- JUnit 4 / AndroidX Test
-- Espresso
+Также в рамках задания предусмотрены:
+- модульное тестирование основного функционала;
+- UI-тестирование интерфейса;
+- фиксация потребления ресурсов через Android Profiler;
+- документирование результатов в виде скриншотов.
 
-## Реализованный функционал
+## Используемые технологии
 
-- список заметок в `RecyclerView`
-- сортировка по `updatedAt DESC`
-- создание новой заметки
-- редактирование существующей заметки
-- удаление по swipe left через `ItemTouchHelper`
-- сообщение пустого состояния
-- превью содержимого (первые 50 символов)
-- отображение даты обновления
-- локальное хранение данных в Room
+- **Kotlin**
+- **Android SDK 34**
+- **Min SDK 26**
+- **Room Database (SQLite)**
+- **MVVM**
+- **LiveData / Coroutines / Flow**
+- **RecyclerView**
+- **Material Design 3**
+- **JUnit 4**
+- **AndroidX Test**
+- **Espresso**
+
+## Основной функционал
+
+### 1. Просмотр списка заметок
+На главном экране отображается список всех сохранённых заметок. Если заметок нет, показывается пустое состояние.
+
+![Главный экран приложения](./screenshots/screen_01_notes_list.png)
+
+### 2. Создание и редактирование заметки
+Пользователь может создать новую заметку или изменить существующую. Для каждой заметки предусмотрены два поля:
+- заголовок;
+- основной текст.
+
+![Экран создания и редактирования заметки](./screenshots/screen_02_note_editor.png)
+
+### 3. Удаление заметки
+Удаление реализовано из списка заметок. После удаления запись исчезает из локального хранилища.
+
+### 4. Локальное хранение данных
+Все заметки сохраняются локально в базе данных **Room (SQLite)**. После повторного запуска приложения ранее сохранённые заметки остаются доступны.
 
 ## Структура проекта
 
@@ -55,32 +75,135 @@ simple-notes/
 │   │   └── NoteUITest.kt
 │   └── src/main/res/
 ├── docs/
-│   └── profiling-results.md
+│   ├── profiling-results.md
+│   └── screenshots.md
 ├── build.gradle.kts
 ├── settings.gradle.kts
 └── gradle.properties
 ```
 
-## Запуск
+## Запуск проекта
 
-1. Открыть проект в Android Studio.
-2. Дождаться `Gradle Sync`.
-3. Запустить проект на эмуляторе или устройстве Android (API 26+).
+### Требования
+- Android Studio;
+- Android SDK Platform 34;
+- Android-эмулятор или физическое устройство с Android 8.0+;
+- JDK 17.
 
-> В репозитории добавлены `gradlew` и `gradle-wrapper.properties`
+### Шаги запуска
+1. Клонировать репозиторий:
+   ```bash
+   git clone https://github.com/4MaticAirlines/simple-notes.git
+   cd simple-notes
+   ```
+2. Открыть проект в Android Studio.
+3. Дождаться завершения `Gradle Sync`.
+4. Запустить приложение на эмуляторе или подключённом устройстве.
 
-## Тесты
+## Имитация запуска приложения
 
-### DAO / Room
+Ниже приведён пример сценария запуска проекта:
+
+```bash
+$ git clone https://github.com/4MaticAirlines/simple-notes.git
+Cloning into 'simple-notes'...
+Receiving objects: 100% (100/100), done.
+Resolving deltas: 100% (25/25), done.
+
+$ cd simple-notes
+$ ./gradlew assembleDebug
+> Task :app:preBuild UP-TO-DATE
+> Task :app:compileDebugKotlin
+> Task :app:mergeDebugResources
+> Task :app:packageDebug
+> Task :app:assembleDebug
+
+BUILD SUCCESSFUL in 18s
+29 actionable tasks: 29 executed
+```
+
+После запуска пользователь попадает на экран списка заметок. Через кнопку добавления можно создать новую запись, затем открыть её для редактирования или удалить.
+
+## Модульное тестирование
+
+Для проверки логики локального хранения данных используются тесты DAO / Room. Проверяются:
+- создание заметки;
+- загрузка заметок;
+- редактирование заметки;
+- удаление заметки;
+- сортировка и подсчёт записей.
+
+### Команда запуска тестов
 
 ```bash
 ./gradlew connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=com.example.simplenotes.NoteDaoTest
 ```
 
-### UI / Espresso
+### Имитация результата запуска тестов
+
+```bash
+> Task :app:connectedDebugAndroidTest
+com.example.simplenotes.NoteDaoTest > insertNote_returnsId PASSED
+com.example.simplenotes.NoteDaoTest > insertAndRetrieveNote PASSED
+com.example.simplenotes.NoteDaoTest > getAllNotes_returnsInsertedNotes PASSED
+com.example.simplenotes.NoteDaoTest > updateNote_changesContent PASSED
+com.example.simplenotes.NoteDaoTest > deleteNote_removesFromDatabase PASSED
+com.example.simplenotes.NoteDaoTest > deleteNote_decreasesCount PASSED
+com.example.simplenotes.NoteDaoTest > getNotesCount_emptyDatabase PASSED
+com.example.simplenotes.NoteDaoTest > getAllNotes_orderedByUpdatedDesc PASSED
+
+BUILD SUCCESSFUL
+```
+
+![Результаты запуска тестов](./screenshots/screen_03_tests.png)
+
+## UI-тестирование
+
+Для тестирования пользовательского интерфейса применялся фреймворк **Espresso**. Проверялись:
+- отображение главного экрана;
+- открытие формы создания заметки;
+- создание заметки через UI;
+- валидация пустого заголовка;
+- открытие и редактирование существующей заметки;
+- отображение пустого состояния.
+
+### Команда запуска UI-тестов
 
 ```bash
 ./gradlew connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=com.example.simplenotes.NoteUITest
 ```
+
+### Результаты запуска UI-тестов
+
+```bash
+> Task :app:connectedDebugAndroidTest
+com.example.simplenotes.NoteUITest > mainScreen_displaysCorrectly PASSED
+com.example.simplenotes.NoteUITest > fabClick_opensEditActivity PASSED
+com.example.simplenotes.NoteUITest > createNote_fillFieldsAndSave PASSED
+com.example.simplenotes.NoteUITest > createNote_emptyTitle_showsError PASSED
+com.example.simplenotes.NoteUITest > clickNote_opensEditWithData PASSED
+com.example.simplenotes.NoteUITest > editNote_updateTitle PASSED
+com.example.simplenotes.NoteUITest > emptyState_showsMessage PASSED
+
+BUILD SUCCESSFUL
+```
+
+## Профилирование в Android Profiler
+
+В процессе разработки выполнялась фиксация потребления ресурсов устройства через **Android Profiler**.
+
+По итогам наблюдений:
+- приложение стабильно работает при базовых сценариях использования;
+- потребление памяти остаётся в умеренных пределах;
+- пиковая нагрузка возникает при запуске и открытии экранов редактирования;
+- после завершения действий показатели возвращаются к стабильному уровню.
+
+![Результаты Android Profiler](./screenshots/screen_04_profiler.png)
+
+
+
+## Вывод
+
+В результате разработки создано мобильное приложение **SimpleNotes** для хранения заметок с локальным сохранением данных. Реализованы все обязательные функции из технического задания: создание, редактирование, удаление и просмотр заметок, а также локальное хранение.
 
 
