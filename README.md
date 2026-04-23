@@ -38,14 +38,16 @@
 ### 1. Просмотр списка заметок
 На главном экране отображается список всех сохранённых заметок. Если заметок нет, показывается пустое состояние.
 
-![Главный экран приложения](./screenshots/screen_01_notes_list.png)
+<img width="1080" height="1920" alt="screen_01_notes_list" src="https://github.com/user-attachments/assets/06011343-2da7-420c-b07e-a7ec039f8be3" />
+
 
 ### 2. Создание и редактирование заметки
 Пользователь может создать новую заметку или изменить существующую. Для каждой заметки предусмотрены два поля:
 - заголовок;
 - основной текст.
 
-![Экран создания и редактирования заметки](./screenshots/screen_02_note_editor.png)
+<img width="1080" height="1920" alt="screen_02_note_editor" src="https://github.com/user-attachments/assets/7da1ba35-dd68-47bc-8e25-7aa5726d847a" />
+
 
 ### 3. Удаление заметки
 Удаление реализовано из списка заметок. После удаления запись исчезает из локального хранилища.
@@ -155,7 +157,8 @@ com.example.simplenotes.NoteDaoTest > getAllNotes_orderedByUpdatedDesc PASSED
 BUILD SUCCESSFUL
 ```
 
-![Результаты запуска тестов](./screenshots/screen_03_tests.png)
+<img width="1600" height="900" alt="screen_03_tests" src="https://github.com/user-attachments/assets/d872bcc1-3256-4e1c-9188-bd240d1ed3d1" />
+
 
 ## UI-тестирование
 
@@ -198,7 +201,8 @@ BUILD SUCCESSFUL
 - пиковая нагрузка возникает при запуске и открытии экранов редактирования;
 - после завершения действий показатели возвращаются к стабильному уровню.
 
-![Результаты Android Profiler](./screenshots/screen_04_profiler.png)
+<img width="1600" height="900" alt="screen_04_profiler" src="https://github.com/user-attachments/assets/32011b89-5ccd-4fd9-b23b-a59259daef3a" />
+
 
 
 
