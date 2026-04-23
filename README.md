@@ -201,7 +201,8 @@ BUILD SUCCESSFUL
 - пиковая нагрузка возникает при запуске и открытии экранов редактирования;
 - после завершения действий показатели возвращаются к стабильному уровню.
 
-<img width="1600" height="900" alt="screen_04_profiler" src="https://github.com/user-attachments/assets/32011b89-5ccd-4fd9-b23b-a59259daef3a" />
+<img width="1550" height="804" alt="Снимок экрана 2026-04-23 в 21 57 44" src="https://github.com/user-attachments/assets/a301da70-9e13-468b-9ea0-2b19dbc2adb8" />
+
 
 
 
